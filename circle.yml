@@ -4,8 +4,8 @@ machine:
 
 dependencies:
   override:
-    - docker build -t platzi
+    - docker build -t devops_platzi .
 
 test:
   override:
-    - docker run platzi npm test
+    - docker run devops_platzi npm test
