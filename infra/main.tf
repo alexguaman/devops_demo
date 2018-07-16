@@ -12,7 +12,8 @@ resource "digitalocean_loadbalancer" "platzidemo" {
 
   healthcheck {
     port = 3000
-    protocol = "tcp"
+    protocol = "http"
+    path  = "/"
   }
 
   droplet_tag = "${digitalocean_tag.platzidemo.name}"
@@ -25,7 +26,7 @@ resource "digitalocean_tag" "platzidemo" {
 
 # Create a new Web Droplet in the nyc3 region
 resource "digitalocean_droplet" "platzidemo" {
-  count  = 3
+  count  = 2
   image  = "36213373"
   name   = "devops-demo-v2"
   region = "nyc3"
