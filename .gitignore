@@ -2,3 +2,4 @@ node_modules
 packer.exe
 infra/.terraform
 infra/terraform.exe
+infra/completed.txt

@@ -27,12 +27,19 @@ resource "digitalocean_tag" "platzidemo" {
 # Create a new Web Droplet in the nyc3 region
 resource "digitalocean_droplet" "platzidemo" {
   count  = 2
-  image  = "36213373"
+  image  = "${var.image_id}"
   name   = "devops-demo-v2"
   region = "nyc3"
   size   = "512mb"
   ssh_keys = [21998511]
   tags   = ["${digitalocean_tag.platzidemo.id}"]
+
+  lifecycle {
+    create_before_destroy = true
+  }
+  provisioner "local-exec" {
+    command = "PING -n 100 127.0.0.1>nul"
+  }
 
   user_data = "${file("user-data.web")}"
 }
